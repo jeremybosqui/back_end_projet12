@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Main, Title } from "../styles/errorStyle";
+import { Main, Title } from "../Style/errorStyle";
 
 
-export default function Error () {
+function Error () {
     
     return (
         <Main>
@@ -13,4 +13,5 @@ export default function Error () {
         </Main>
     )
 }
- 
+
+export default Error

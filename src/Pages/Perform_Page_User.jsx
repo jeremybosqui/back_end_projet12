@@ -1,35 +1,41 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { getData } from "../utils/getData";
+import { getData } from "../Api/getData";
 import { useParams } from "react-router";
-import SideBar from "../components/SideBar";
-import UserInfos from "../components/UserInfos";
-import {Main, Container, Content, BottomChart} from "../styles/userStyle";
-import caloriesIcon from "../assets/calories-icon.svg";
-import proteinsIcon from "../assets/proteines-icon.svg";
-import glucidesIcon from "../assets/glucides-icon.svg";
-import lipidesIcon from "../assets/lipides-icon.svg";
-import ScoreChart from "../components/ScoreChart";
-import KeyData from "../components/KeyData";
-import UserPerformance from "../components/UserPerformance";
+import SideBar from "../Utils/Side_Bar";
+import UserInfos from "../Components/Infos_User";
+import {Main, Container, Content, BottomChart} from "../Style/userStyle";
+import caloriesIcon from "../Assets/BurnKcls.svg";
+import proteinsIcon from "../Assets/Proteins.svg";
+import glucidesIcon from "../Assets/Glucid.svg";
+import lipidesIcon from "../Assets/lipides-icon.svg";
+import ScoreChart from "../Components/Score_Chart_User";
+import KeyData from "../Components/Data_Key";
+import UserPerformance from "../Components/Performance_User";
 
 /**Render the dashboard
  * @return {JSX.Element}
  */
 function PerformPage() {
 
-    const [dataperfom, setDataperform] = useState([]);
-    const { id } = useParams();
+    const [dataperfom, setDataperform] = useState([])
+    const { id } = useParams()
 
     useEffect(() => {
         const data = async () => {
-            const [request] = await Promise.all([getData("USER_MAIN_DATA", id)]);
-            if (!request) return alert("data error");
-            setDataperform(request["data"]);
-        };
-        data().then(() => undefined);
-    }, [id]);
-    if (dataperfom.length === 0) return null;
+            const [request] = await Promise.all([getData("USER_MAIN_DATA", id)])
+            if (!request) {
+                return alert("data error")
+            }
+            setDataperform(request["data"])
+        }
+        data().then().catch(
+            console.log ["something went wrong"]
+        )
+    }, [id])
+    if (dataperfom.length === 0) {
+        return null
+    }
 
     return (
         <Main>
